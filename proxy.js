@@ -36,7 +36,7 @@ var httpUserRequest = function (userReq, userRes) {
 
     if ( isDenied(userReq) ) {
         util.log('denied: ' + userReq.method + ' ' + userReq.url);
-        userRes.write('<html><body><h1>access denied</h1></body></html>');
+        userRes.write('<html><head><title>access denied</title></head><body><h1>access denied</h1></body></html>');
         userRes.end();
         return;
     }
@@ -71,7 +71,7 @@ var httpUserRequest = function (userReq, userRes) {
     proxyRequest.on('error', function(e) {
         util.error(e);
         userRes.writeHead(500);
-        userRes.end('<h1>500 Error</h1>');
+        userRes.end('<html><head><title>500 error</title></head><body><h1>500 error</h1></body></html>');
     });
 
     userReq.on('data', function (chunk) {
@@ -85,7 +85,7 @@ var httpUserRequest = function (userReq, userRes) {
     userReq.on('error', function(e) {
         util.error(e);
         userRes.writeHead(500);
-        userRes.end('<h1>500 Error</h1>');
+        userRes.end('<html><head><title>500 error</title></head><body><h1>500 error</h1></body></html>');
     });
 
 };
